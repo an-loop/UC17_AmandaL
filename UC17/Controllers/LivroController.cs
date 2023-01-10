@@ -67,6 +67,35 @@ namespace UC17.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+            try
+            {
+                _livroRepository.Deletar(id);
+                return Ok("Livro removido com sucesso!");
+            }
+
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Alterar(int id, Livro l)
+        {
+            try
+            {
+                _livroRepository.Alterar(id, l);
+                return StatusCode(204);
+            }
+
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
     }
 

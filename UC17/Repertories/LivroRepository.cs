@@ -27,8 +27,28 @@ namespace UC17.Repositories
             _context.Livros.Add(l);
             _context.SaveChanges();
         }
-        
 
+        public void Deletar(int id)
+        {
+            Livro l = _context.Livros.Find(id);
+            _context.Livros.Remove(l);
+            _context.SaveChanges();
+        }
+
+        public void Alterar(int id, Livro l)
+        {
+            Livro livroBuscado = _context.Livros.Find(id);
+
+            if (livroBuscado != null)
+            {
+                livroBuscado.Título = l.Título;
+                livroBuscado.QuantidadePaginas = l.QuantidadePaginas;
+                livroBuscado.Disponível = l.Disponível;
+
+                _context.Livros.Update(livroBuscado);
+                _context.SaveChanges();
+            }
+        }
 
     }
 }
